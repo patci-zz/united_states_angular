@@ -2,11 +2,11 @@ var chai = require('chai');
 var chaihttp = require('chai-http');
 chai.use(chaihttp);
 var expect = chai.expect;
-
 process.env.MONGOLAB_URI = 'mongodb://localhost/beer_test';
 require(__dirname + '/../server');
 var mongoose = require('mongoose');
 var Beer = require(__dirname + '/../models/beer')
+var User = require(__dirname + '/../models/user');
 
 describe('beer routes', function() {
   after(function(done) {
@@ -15,8 +15,25 @@ describe('beer routes', function() {
     });
   });
 
+    before(function(done) {
+      var user = new User();
+      user.username = 'test';
+      user.basic.username = 'test';
+      user.generateHash('foobar123', function(err, res) {
+        if (err) throw err;
+        user.save(function(err, data) {
+          if (err) throw err;
+          user.generateToken(function(err, token) {
+            if (err) throw err;
+            this.token = token;
+            done();
+          }.bind(this));
+        }.bind(this));
+      }.bind(this));
+    });
+
   it('should be able to create a beer', function(done) {
-    var beerData = {brand: 'test brand'};
+    var beerData = {brand: 'test brand', token: this.token};
     chai.request('localhost:3000')
     .post('/api/beers')
     .send(beerData)
@@ -40,7 +57,7 @@ describe('beer routes', function() {
 
   describe('needs a beer', function() {
     beforeEach(function(done) {
-      (new Beer({name: 'test beer'})).save(function(err, data) {
+      (new Beer({name: 'test beer', token: this.token})).save(function(err, data) {
         expect(err).to.eql(null);
         this.beer = data;
         done();
@@ -50,7 +67,7 @@ describe('beer routes', function() {
     it('should be able to modify a beer', function(done) {
       chai.request('localhost:3000')
       .put('/api/beers/' + this.beer._id)
-      .send({brand: 'a new test brand'})
+      .send({brand: 'a new test brand', token: this.token})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.body.msg).to.eql('success!');
@@ -61,6 +78,7 @@ describe('beer routes', function() {
     it('should remove a beer', function(done) {
       chai.request('localhost:3000')
       .delete('/api/beers/' + this.beer._id)
+      .set('token', this.token)
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.body.msg).to.eql('success!');

@@ -19,7 +19,6 @@ beersRouter.post('/beers', bodyParser.json(), function(req, res) {
   newBeer.author = req.user.username;
   newBeer.save(function(err, data) {
     if (err) return handleError(err, res);
-
     res.json(data);
   });
 });

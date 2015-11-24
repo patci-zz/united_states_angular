@@ -5,6 +5,7 @@ var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handleServerError');
 var httpBasic = require(__dirname + '/../lib/http_basic');
 
+
 var usersRouter = module.exports = exports = express.Router();
 
 usersRouter.post('/signup', function(req, res) {
@@ -23,7 +24,7 @@ usersRouter.post('/signup', function(req, res) {
   });
 });
 
-userRouter.get('/signin', httpBasic, function(req, res) {
+usersRouter.get('/signin', httpBasic, function(req, res) {
   User.findOne({'basic.username': req.auth.username}, function(err, user) {
     if (err) handleError(err, res);
 

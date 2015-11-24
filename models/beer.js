@@ -10,7 +10,9 @@ var beerSchema = new mongoose.Schema({
     required: true
     },
   style: String,
-  abv: Number
+  abv: Number,
+  drinker: String,
+  drinkerID: String
 });
 
 module.exports = mongoose.model('Beer', beerSchema);

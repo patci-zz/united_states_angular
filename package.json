@@ -21,15 +21,18 @@
   },
   "homepage": "https://github.com/patci/mongo_backed_rest_api#readme",
   "dependencies": {
-    "bcrypt": "^0.8.5",
+    "bcrypt": "latest",
     "body-parser": "^1.14.1",
     "eat": "^0.1.1",
     "express": "^4.13.3",
     "mongoose": "^4.2.5"
   },
   "devDependencies": {
+    "angular": "^1.4.8",
     "chai": "^3.4.1",
     "chai-http": "^1.0.0",
-    "mocha": "^2.3.3"
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.3",
+    "webpack-stream": "^2.1.1"
   }
 }

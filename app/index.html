@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+        <title>
+      Resources!
+    </title>
+  </head>
+  <body data-ng-app='bearstream'> // this is a directive pre-fixed with data
+    <main data-ng-controller='GreetingController'>
+
+    <h1>Our Super App</h1>
+    <h2>{{greeting}}</h2> //tell angular to execute js code
+
+    <input type='text' data-ng-model='greeting'>
+    </main>
+    <script src='bundle.js'></script>
+  </body>
+</html>

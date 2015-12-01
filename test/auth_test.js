@@ -13,14 +13,14 @@ describe('http basic', function() {
   it('should be able to parse http basic auth', function() {
     var req = {
       headers: {
-        authorization: 'Basic' + (new Buffer('test:foobar123')).toString('base64');
+        authorization: 'Basic' + (new Buffer('test:foobar123')).toString('base64')
       }
     };
 
     httpBasic(req, {}, function() {  //Used to parse out
       expect(typeof req.auth).to.eql('object');
       expect(req.auth.username).to.eql('test');
-      expect(re.auth.password).to.eql('foobar123');
+      expect(req.auth.password).to.eql('foobar123');
     });
   });
 });
@@ -47,7 +47,7 @@ describe('auth', function() {
     before(function(done) {
       var user = new User();
       user.username = 'test';
-      user.basic.username = 'test';
+      user.auth.basic.username = 'test';
       user.generateHash('foobar123', function(err, res) {
         if (err) throw err;
         user.save(function(err, data) {

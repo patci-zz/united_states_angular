@@ -10,7 +10,7 @@ var usersRouter = module.exports = exports = express.Router();
 
 usersRouter.post('/signup', function(req, res) {
   var newUser = new User();
-  newUser.basic.username = req.body.username;
+  newUser.auth.basic.username = req.body.username;
   newUser.username = req.body.username;
   newUser.generateHash(req.body.password, function(err, hash) {
     if(err) return handleError(err, res);

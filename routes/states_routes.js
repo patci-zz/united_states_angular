@@ -4,7 +4,7 @@ var State = require(__dirname + '/../models/state');
 var handleError = require(__dirname + '/../lib/handleServerError');
 var eatAuth = require(__dirname + '/../lib/eat_auth');
 
-var beersRouter = module.exports = exports = express.Router();
+var statesRouter = module.exports = exports = express.Router();
 
 //statesRouter.use(bodyPar)
 statesRouter.get('/states', function(req, res) {

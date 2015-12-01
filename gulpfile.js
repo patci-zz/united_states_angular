@@ -2,12 +2,12 @@ var gulp = require('gulp');
 var webpack = require('webpack-stream');
 
 gulp.task('static:dev', function() {
-  gulp.src('app/**/*.html')
+  gulp.src(__dirname + '/app/**/*.html')
   .pipe(gulp.dest('build/'));
 });
 
 gulp.task('webpack:dev', function() {
-  gulp.src(__dirname + 'app/js/entry.js')
+  return gulp.src(__dirname + '/app/js/entry.js')
   .pipe(webpack({
     output: {
       filename: 'bundle.js'

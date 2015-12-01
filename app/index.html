@@ -2,15 +2,17 @@
 <html lang='en'>
   <head>
     <meta charset='UTF-8'>
-        <title>
-      States!
-    </title>
+    <title>States!</title>
   </head>
-  <body data-ng-app='UnitedStates'>
-    <main data-ng-controller='GreetingController'>
+  <body data-ng-app='UnitedStatesApp'>  <!--this is a directive pre-fixed with 'data' telling everything contained within the body is angular-->
+    <main data-ng-controller='GreetingController' data-ng-init="getAll()">
 
-    <h1>Our Super App</h1>
-    <h2>{{greeting}}</h2>
+      <ul id='statelist'>
+        <li data-ng-repeat='state in states'>{{state.name}}</li>
+      </ul>
+
+    <h1>United States!</h1>
+    <h2>{{greeting}}</h2>  <!--tell angular to execute js code-->
 
     <input type='text' data-ng-model='greeting'>
     </main>

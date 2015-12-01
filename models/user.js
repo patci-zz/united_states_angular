@@ -13,7 +13,7 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateHash = function(password, callback) {
-  bcrypt.hash(password, 8, function(err, has) {
+  bcrypt.hash(password, 8, function(err, hash) {
     if (err) return callback(err);
     this.username.basic.password = hash;
     callback(null, hash);
@@ -21,7 +21,7 @@ userSchema.methods.generateHash = function(password, callback) {
 };
 
 userSchema.methods.compareHash = function(password, callback) {
-  return bcrypt.compare(password, this.basic.password, callback);
+  return bcrypt.compare(password, this.auth.basic.password, callback);
 };
 
 userSchema.methods.generateToken = function(callback) {

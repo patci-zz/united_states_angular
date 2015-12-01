@@ -2,9 +2,10 @@ var fs = require('fs');
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/beer_dev');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/state_dev');
 process.env.APP_SECRET = process.env.APP_SECRET || 'changeme';
 
+/*
 app.get('/:filename', function(req, res, next) {
   fs.stat(__dirname + '/build/' + req.params.filename, function(err, status) {
     if (err) {
@@ -19,9 +20,12 @@ app.get('/:filename', function(req, res, next) {
   });
 });
 
-var beersRouter = require(__dirname + '/routes/beers_routes');
+*/
+
+var statesRouter = require(__dirname + '/routes/states_routes');
 var usersRouter = require(__dirname + '/routes/users_routes');
-app.use('/api', beersRouter);
+app.use(express.static(__dirname + '/build'));
+app.use('/api', statesRouter);
 app.use('/api', usersRouter);
 
 var port = process.env.PORT || 3000;
@@ -29,6 +33,6 @@ app.listen(port, function() {
   console.log('server up on port: ' + port);
 });
 
-app.get('/yaybeer', function(req, res) {
-  res.send('Where\'s the keg at???');
+app.get('/favoriteState', function(req, res) {
+  res.send('Somebody say Missouri???');
 });

@@ -12,6 +12,15 @@ module.exports = exports = function(app) {
       });
     };
 
+    $scope.edit = function(state) {
+      state.editing = !state.editing;
+      state.currentName = state.name;
+    }
+
+    $scope.cancel = function(state) {
+      state.name = state.currentName;
+    }
+
     $scope.create = function(state) {
       $http.post('/api/states', state)
         .then(function(res) {

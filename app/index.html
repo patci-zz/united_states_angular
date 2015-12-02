@@ -4,37 +4,46 @@
     <meta charset='UTF-8'>
     <title>States!</title>
   </head>
-  <h1>United States!</h1>
-    <h2>{{greeting}}</h2>  <!--tell angular to execute js code-->
   <body data-ng-app='UnitedStatesApp'>  <!--this is a directive pre-fixed with 'data' telling everything contained within the body is angular-->
-    <main data-ng-controller='GreetingController' data-ng-init="getAll()">
-      <form name="newStateForm" data-ng-submit="create(newState)">
-        <label for="newStateName">Name:
-          <input type="text" id="newStateName" required data-ng-model="newState.name">
-        </label>
-        <label for="newStateCapital">Capital:
-          <input type="text" id="newStateCapital" data-ng-model="newState.capital">
-        </label>
-        <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit</button>
-      </form>
-      <ul id='statelist'>
-        <li data-ng-repeat='state in states'>{{state.name}}
+    <h1>A United States Angular App</h1>
+    <main data-ng-controller='StatesController' data-ng-init="getAll()">
+      <ul id="errorslist">
+      <li data-ng-repeat="error in errors">{{error}}</li>
+    </ul>
 
-          <form name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
+    <form name="newStateForm" data-ng-submit="create(newState)">
+      <h2>Add a State:</h2>
 
-        <label for="stateName{{">Name:</label>
-        <input type="text" id="newStateName" required data-ng-model="newState.name">
+      <label for="newStateName">State:</label>
+      <input type="text" id="newStateName" required data-ng-model="newState.name">
 
-        <label for="newStateCapital">Capital:</label>
-        <input type="text" id="newStateCapital" data-ng-model="newState.capital">
+      <label for="newFavoriteCity">Favorite City:</label>
+      <input type="text" id="newFavoriteCity" data-ng-model="newState.city">
 
-        <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit</button>
-        <button data-ng-click="state.editing = false"></button>
-      </form>
+      <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit New State</button>
+    </form>
 
-          <button data-ng-if="!bear.editing" data-ng-click="state.editing = true">Edit?</button></li>
+    <ul id='statelist'>
+        <li data-ng-repeat='state in states'>
+          {{state.name}}
+
+        <form name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
+
+          <label for="stateName{{state._id}}">State:</label>
+          <input type="text" id="stateName" required data-ng-model="newState.name">
+
+          <label for="stateCapital">Favorite City:</label>
+          <input type="text" id="favoriteCity" data-ng-model="newState.city">
+
+          <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit Changes</button>
+          <button data-ng-click="state.editing = false">Cancel</button>
+        </form>
+
+          <button data-ng-if="!state.editing" data-ng-click="state.editing=true">Change this State?</button>
+
+          <button data-ng-if="!state.editing" data-ng-click="remove(state)">Remove this State?</button>
+        </li>
       </ul>
-    <input type='text' data-ng-model='greeting'>
     </main>
     <script src='bundle.js'></script>
   </body>

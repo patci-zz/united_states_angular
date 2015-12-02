@@ -5,7 +5,7 @@ var stateSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  capital: {
+  favoriteCity: {
     type: String,
     required: true
     }

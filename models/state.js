@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var stateSchema = new mongoose.Schema({
-  stateName: {
+  name: {
     type: String,
     required: true
   },
-  stateCapital: {
+  favoriteCity: {
     type: String,
     required: true
     }

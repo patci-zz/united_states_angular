@@ -2,8 +2,6 @@ module.exports = exports = function(app) {
   app.controller('StatesController', ['$scope', '$http', function($scope, $http) {
     $scope.states = []; // Will be bound to the array, will not look elsewhere
     $scope.errors = [];
-    var defaults = {name: 'Washington', favoriteCity: 'Seattle'};
-    $scope.newState = Object.create(defaults);
 
     $scope.getAll = function() {
     $http.get('/api/states') // Haven't told what to do once request has been completed
@@ -18,7 +16,7 @@ module.exports = exports = function(app) {
       $http.post('/api/states', state)
         .then(function(res) {
           $scope.states.push(res.data);
-          $scope.newState = Object.create(defaults);
+          $scope.newState = null;
         }, function(err) {
           console.log(err.data);
         });

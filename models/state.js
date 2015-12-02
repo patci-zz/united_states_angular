@@ -4,7 +4,7 @@ var stateSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  favoriteCity: {
+  city: {
     type: String,
     }
 });

@@ -15,10 +15,10 @@
       <h2>Add a State:</h2>
 
       <label for="newStateName">State:</label>
-      <input type="text" id="newStateName" required data-ng-model="newState.name">
+      <input type="text" id="newStateName" required data-ng-model="newState.name" placeholder="Washington">
 
       <label for="newFavoriteCity">Favorite City:</label>
-      <input type="text" id="newFavoriteCity" data-ng-model="newState.city">
+      <input type="text" id="newFavoriteCity" data-ng-model="newState.city" placeholder="Seattle">
 
       <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit New State</button>
     </form>
@@ -28,14 +28,15 @@
           {{state.name}}
 
         <form name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
+          <h2>Update {{state.name}}</h2>
 
           <label for="stateName{{state._id}}">State:</label>
-          <input type="text" id="stateName" required data-ng-model="newState.name">
+          <input type="text" id="stateName" required data-ng-model="state.name">
 
-          <label for="stateCapital">Favorite City:</label>
-          <input type="text" id="favoriteCity" data-ng-model="newState.city">
+          <label for="favoriteCity">Favorite City:</label>
+          <input type="text" id="favoriteCity" data-ng-model="state.city">
 
-          <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit Changes</button>
+          <button type="submit">Submit Changes</button>
           <button data-ng-click="state.editing = false">Cancel</button>
         </form>
 

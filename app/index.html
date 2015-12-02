@@ -37,13 +37,13 @@
           <label for="favoriteCity">Favorite City:</label>
           <input type="text" id="favoriteCity" data-ng-model="state.city">
 
-          <button type="submit">Submit Changes</button>
+          <button type="submit">Save Changes</button>
           <button data-ng-click="state.editing = false">Cancel</button>
         </form>
 
-          <button data-ng-if="!state.editing" data-ng-click="state.editing=true">Change this State?</button>
+          <a href="" data-ng-if="!state.editing" data-ng-click="state.editing=true">edit</a>
 
-          <button data-ng-if="!state.editing" data-ng-click="remove(state)">Remove this State?</button>
+          <a href="" data-ng-if="!state.editing" data-ng-click="remove(state)">delete</a>
         </li>
       </ul>
     </main>

@@ -24,7 +24,7 @@ module.exports = exports = function(app) {
 
     $scope.update = function(state) {
       state.editing = false;
-      $http.put('/api/states' + state._id, state)
+      $http.put('/api/states/' + state._id, state)
       .then(function(res) {
         console.log('this state has a new name');
       }, function(err) {
@@ -35,7 +35,7 @@ module.exports = exports = function(app) {
 
     $scope.remove = function(state) {
       $scope.states.splice($scope.states.indexOf(state), 1);
-      $http.delete('/api/states' + state._id)
+      $http.delete('/api/states/' + state._id)
         .then(function(res) {
           console.log('State removed');
         }, function(err) {

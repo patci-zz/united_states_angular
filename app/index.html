@@ -3,12 +3,13 @@
   <head>
     <meta charset='UTF-8'>
     <title>States!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.css">
   </head>
   <body data-ng-app='UnitedStatesApp'>  <!--this is a directive pre-fixed with 'data' telling everything contained within the body is angular-->
     <h1>A United States Angular App</h1>
     <main data-ng-controller='StatesController' data-ng-init="getAll()">
       <ul id="errorslist">
-      <li data-ng-repeat="error in errors">{{error}}</li>
+      <li data-ng-repeat="error in errors" ng-cloak>{{error}}</li>
     </ul>
 
     <form name="newStateForm" data-ng-submit="create(newState)">
@@ -25,10 +26,10 @@
 
     <ul id='statelist'>
         <li data-ng-repeat='state in states'>
-          {{state.name}}
+          {{state.name}} | {{state.city}}
 
         <form name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
-          <h2>Update {{state.name}}</h2>
+          <h2 ng-cloak>Update {{state.name}}</h2>
 
           <label for="stateName{{state._id}}">State:</label>
           <input type="text" id="stateName" required data-ng-model="state.name">

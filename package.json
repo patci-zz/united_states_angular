@@ -1,5 +1,5 @@
 {
-  "name": "United States Angular CRUD",
+  "name": "united_states_angular",
   "version": "0.1.0",
   "description": "Enter your favorite states and cities!",
   "main": "server.js",

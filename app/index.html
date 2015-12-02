@@ -30,7 +30,7 @@
           <strong ng-cloak>{{state.name}}</strong> &nbsp;&nbsp;&nbsp;
 
         <form data-ng-cloak name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
-          <h2 ng-cloak>Update {{state.name}}</h2>
+          <h2 id="currentName" ng-cloak>Update {{state.currentName}}</h2>
 
           <label for="stateName{{state._id}}">State:</label>
           <input type="text" id="stateName" required data-ng-model="state.name">

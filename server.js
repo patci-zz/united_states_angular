@@ -23,10 +23,8 @@ app.get('/:filename', function(req, res, next) {
 */
 
 var statesRouter = require(__dirname + '/routes/states_routes');
-var usersRouter = require(__dirname + '/routes/users_routes');
 app.use(express.static(__dirname + '/build'));
 app.use('/api', statesRouter);
-app.use('/api', usersRouter);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

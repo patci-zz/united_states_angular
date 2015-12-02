@@ -13,7 +13,7 @@ statesRouter.get('/states', function(req, res) {
   });
 });
 
-statesRouter.post('/states', bodyParser.json(), eatAuth, function(req, res) {
+statesRouter.post('/states', bodyParser.json(), function(req, res) {
   var newState = new State(req.body);
   newState.save(function(err, data) {
     if (err) return handleError(err, res);
@@ -22,7 +22,7 @@ statesRouter.post('/states', bodyParser.json(), eatAuth, function(req, res) {
   });
 });
 
-statesRouter.put('/states/:id', bodyParser.json(), eatAuth, function(req, res)  {
+statesRouter.put('/states/:id', bodyParser.json(), function(req, res)  {
   var stateData = req.body;
   delete stateData._id;
   State.update({_id: req.params.id}, stateData, function(err) {
@@ -32,7 +32,7 @@ statesRouter.put('/states/:id', bodyParser.json(), eatAuth, function(req, res)  
   });
 });
 
-statesRouter.delete('/states/:id', bodyParser.json(), eatAuth, function(req, res) {
+statesRouter.delete('/states/:id', bodyParser.json(), function(req, res) {
   State.remove({_id: req.params.id}, function(err) {
     if (err) return handleError(err, res);
 

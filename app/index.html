@@ -27,7 +27,7 @@
     <ul data-ng-cloak id='statelist'>
         <h3 data-ng-if="states.length>0">States</h3>
         <li data-ng-repeat='state in states'>
-          <strong ng-cloak>{{state.name}}</strong> &nbsp;&nbsp;&nbsp;
+          <strong ng-cloak>{{state.name}}</strong>
 
         <form data-ng-cloak name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
           <h2 id="currentName" ng-cloak>Update {{state.currentName}}</h2>
@@ -41,10 +41,13 @@
           <button type="submit">Save Changes</button>
           <button data-ng-click="cancel(state)">Cancel</button>
         </form>
+          <table>
+            <tr>
+              <td><a href="" data-ng-click="edit(state)">edit</a></td>
 
-          <a href="" data-ng-click="edit(state)">edit</a>&nbsp;
-
-          <a href="" data-ng-if="!state.editing" data-ng-click="remove(state)">delete</a>
+              <td><a href="" data-ng-if="!state.editing" data-ng-click="remove(state)">delete</a></td>
+            </tr><br>
+          </table>
         </li>
       </ul>
     </main>

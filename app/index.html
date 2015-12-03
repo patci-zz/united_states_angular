@@ -4,6 +4,7 @@
     <meta charset='UTF-8'>
     <title>States!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.css">
+    <!--<link rel="stylesheet" href="styles.min.css"> -->
   </head>
   <body data-ng-app='UnitedStatesApp'>  <!--this is a directive pre-fixed with 'data' telling everything contained within the body is angular-->
     <h1>A United States Angular App</h1>
@@ -26,8 +27,11 @@
 
     <ul data-ng-cloak id='statelist'>
         <h3 data-ng-if="states.length>0">States</h3>
-        <li data-ng-repeat='state in states'>
+
+        <li data-ng-repeat="state in states">
           <strong ng-cloak>{{state.name}}</strong>
+
+          <p ng-cloak data-ng-if="state.revealCity">{{state.city}}</p>
 
         <form data-ng-cloak name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
           <h2 id="currentName" ng-cloak>Update {{state.currentName}}</h2>

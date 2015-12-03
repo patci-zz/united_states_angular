@@ -21,6 +21,10 @@ module.exports = exports = function(app) {
       state.name = state.currentName;
     }
 
+    $scope.revealCity = function(state) {
+      state.revealCity = !state.revealCity
+    }
+
     $scope.create = function(state) {
       $http.post('/api/states', state)
         .then(function(res) {

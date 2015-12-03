@@ -1,5 +1,6 @@
 **/*.sw?
 **/node_modules
+**/*bundle.js
 **/db
 build
 .DS_Store

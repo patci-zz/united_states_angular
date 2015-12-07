@@ -55,7 +55,26 @@ describe('states controller', function() {
     });
 
     it('should be able to update a state', function() {
-      $httpBackend.expectPUT('/api/states', {name: 'test state', city: 'test city'})
+      $httpBackend.expectPUT('/api/states', {_id: 2, name: 'test state', city: 'test city'})
+      .respond(200, {name: 'a diff state'});
+      expect($scope.states.length).toBe(0);
+      $scope.states[0]._id = 2;
+      $scope.states[0].name = 'test state';
+      $scope.states[0].city = 'test city';
+      $scope.update($scope.states[0]);
+      $httpBackend.flush();
+      expect($scope.states[0].name).toBe('a diff state');
+    });
+
+    it('should be able to remove a state', function() {
+      $httpBackend.expectDELETE('/api/states', {_id: 3, name: 'test state', city: 'test city'})
+      .respond(200, {name: 'a diff state'});
+      $scope.states.length = 1;
+      $scope.states[0].name = 'test state';
+      $scope.states[0].city = 'test city';
+      $scope.remove($scope.states[0]);
+      $httpBackend.flush();
+      expect($scope.states.length).toBe(0);
     });
 
   });

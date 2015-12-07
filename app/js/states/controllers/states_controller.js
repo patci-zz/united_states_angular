@@ -17,10 +17,12 @@ module.exports = exports = function(app) {
     $scope.edit = function(state) {
       state.editing = !state.editing;
       state.currentName = state.name;
+      state.currentCity = state.city;
     }
 
     $scope.cancel = function(state) {
       state.name = state.currentName;
+      state.city = state.currentCity;
     }
 
     $scope.toggleCity = function(state) {

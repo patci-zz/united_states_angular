@@ -4,7 +4,7 @@
     <meta charset='UTF-8'>
     <title>States!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.css">
-    <!--<link rel="stylesheet" href="styles.min.css"> -->
+    <link rel="stylesheet" href="styles.min.css">
   </head>
   <body data-ng-app='UnitedStatesApp'>  <!--this is a directive pre-fixed with 'data' telling everything contained within the body is angular-->
     <h1>A United States Angular App</h1>
@@ -20,7 +20,7 @@
       <input type="text" id="newStateName" required data-ng-model="newState.name" placeholder="Washington">
 
       <label for="newFavoriteCity">Favorite City:</label>
-      <input type="text" id="newFavoriteCity" data-ng-model="newState.city" placeholder="Seattle">
+      <input type="text" id="newFavoriteCity" required data-ng-model="newState.city" placeholder="Seattle">
 
       <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit New State</button>
     </form>
@@ -28,7 +28,7 @@
     <ul data-ng-cloak id='statelist'>
         <h3 data-ng-if="states.length>0">States</h3>
 
-        <li data-ng-repeat="state in states">
+        <li class="states" data-ng-mouseOver="toggleCity(state)" data-ng-repeat="state in states">
           <strong ng-cloak>{{state.name}}</strong>
 
           <p ng-cloak data-ng-if="state.revealCity">{{state.city}}</p>
@@ -40,16 +40,16 @@
           <input type="text" id="stateName" required data-ng-model="state.name">
 
           <label for="favoriteCity">Favorite City:</label>
-          <input type="text" id="favoriteCity" data-ng-model="state.city">
+          <input type="text" id="favoriteCity" required data-ng-model="state.city">
 
           <button type="submit">Save Changes</button>
           <button data-ng-click="cancel(state)">Cancel</button>
         </form>
           <table>
             <tr>
-              <td><a href="" data-ng-click="edit(state)">edit</a></td>
+              <td class="link"><a href="" data-ng-if="!state.editing" data-ng-click="edit(state)">edit</a></td>
 
-              <td><a href="" data-ng-if="!state.editing" data-ng-click="remove(state)">delete</a></td>
+              <td class="link"><a href="" data-ng-if="!state.editing" data-ng-click="remove(state)">delete</a></td>
             </tr><br>
           </table>
         </li>

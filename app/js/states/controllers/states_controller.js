@@ -1,14 +1,16 @@
 module.exports = exports = function(app) {
-  app.controller('StatesController', ['$scope', '$http', function($scope, $http) {
+  app.controller('StatesController', ['$scope', '$http', 'cfResource', function($scope, $http, cfResource) {
     $scope.states = []; // Will be bound to the array, will not look elsewhere
     $scope.errors = [];
+    //$scope.inputDefaults = {name: 'State', city: 'City'};
+    $scope.newState = {}; //angular.copy($scope.inputDefaults);
+    var statesResource = cfResource('states');
 
     $scope.getAll = function() {
-    $http.get('/api/states') // Haven't told what to do once request has been completed
-      .then(function(res) {  //  $http returns a q Promise that we call `then` on
-        $scope.states = res.data;
-      }, function(err) {
-        console.log(err.data);
+      statesResource.getAll(function(err, data) {
+        if (err) return err;
+
+        $scope.states = data;
       });
     };
 
@@ -21,18 +23,16 @@ module.exports = exports = function(app) {
       state.name = state.currentName;
     }
 
-    $scope.revealCity = function(state) {
-      state.revealCity = !state.revealCity
+    $scope.toggleCity = function(state) {
+      state.toggleCity = !state.toggleCity
     }
 
     $scope.create = function(state) {
-      $http.post('/api/states', state)
-        .then(function(res) {
-          $scope.states.push(res.data);
-          $scope.newState = null;
-        }, function(err) {
-          console.log(err.data);
-        });
+      statesResource.create(state, function(err, data) {
+        if (err) return err;
+        $scope.states.push(data);
+        $scope.newState = {};
+      });
     };
 
     $scope.update = function(state) {

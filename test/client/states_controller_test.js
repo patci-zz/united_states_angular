@@ -55,9 +55,10 @@ describe('states controller', function() {
     });
 
     it('should be able to update a state', function() {
+      $scope.states.push()
+      expect($scope.states.length).toBe(1);
       $httpBackend.expectPUT('/api/states', {_id: 2, name: 'test state', city: 'test city'})
       .respond(200, {name: 'a diff state'});
-      expect($scope.states.length).toBe(0);
       $scope.states[0]._id = 2;
       $scope.states[0].name = 'test state';
       $scope.states[0].city = 'test city';

@@ -9,34 +9,10 @@
   <body data-ng-app='UnitedStatesApp'>  <!--this is a directive pre-fixed with 'data' telling everything contained within the body is angular-->
 
   <div data-ng-controller="AuthController" data-ng-init="getUser()">
-    <a data-ng-if="currentUser" href data-mg-click="logOut()">Log Out of {{username}}</a>
+    <a data-ng-if="currentUser" href data-mg-click="logOut()">Log Out of {{currentUser}}</a>
     <main data-ng-view></main>
   </div>
 
-    <h1>A United States Angular App</h1>
-
-    <ul data-ng-cloak id='statelist'>
-        <h3 data-ng-if="states.length>0">States</h3>
-
-        <li class="states"
-          data-ng-repeat="state in states">
-          <strong ng-cloak>{{state.name}}</strong>
-          <div data-state-directive data-state="state"></div>
-
-          <p ng-cloak data-ng-if="state.revealCity">{{state.city}}</p>
-
-        <form data-ng-cloak name="stateForm{{state._id}}" data-ng-submit="update(state)" data-ng-if="state.editing">
-          <h2 id="currentName" ng-cloak>Update {{state.currentName}}</h2>
-
-          <label for="stateName{{state._id}}">State:</label>
-          <input type="text" id="stateName" required data-ng-model="state.name">
-
-          <label for="favoriteCity">Favorite City:</label>
-          <input type="text" id="favoriteCity" required data-ng-model="state.city">
-
-          <button type="submit">Save Changes</button>
-          <button data-ng-click="cancel(state)">Cancel</button>
-        </form>
 
     <script src='bundle.js'></script>
   </body>

@@ -5,7 +5,6 @@ require('angular-base64');
 var angular = window.angular;
 
 var unitedStatesApp = angular.module('UnitedStatesApp', ['ngRoute', 'ngCookies', 'base64']); //angular construct
-require('./states/states')(unitedStatesApp);
 require('./services/services')(unitedStatesApp);
 require('./states/controllers/states_controller')(unitedStatesApp);
 require('./directives/directives')(unitedStatesApp);

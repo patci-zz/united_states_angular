@@ -1,7 +1,8 @@
 module.exports = exports = function(app) {
-  app.controller('SigninController', ['$scope', '$http', '$location', 'cookies', '$base64', function($scope, $http, $location, $cookies, $base64) {
+  app.controller('SigninController', ['$scope', '$http', '$location', '$cookies', '$base64', function($scope, $http, $location, $cookies, $base64) {
     $scope.headingText = 'Sign in to Existing User';
-    $scope.buttonText = 'Kenny Log Ins';
+    $scope.submitText = 'Kenny Log Ins';
+    $scope.swapPlaces = 'Create Account?'
 
     $scope.authenticate = function(user) {
       $http({

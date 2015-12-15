@@ -6,7 +6,7 @@ module.exports = exports = function(app) {
     $scope.authenticate = function(user) {
       $http({
         method: 'GET',
-        url: '/api/signin'
+        url: '/api/signin',
         headers: {
           'Authorization': 'Basic ' + $base64.encode(user.username + ':' + user.password)
         }

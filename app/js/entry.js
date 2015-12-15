@@ -4,12 +4,15 @@ require('angular-cookies');
 require('angular-base64');
 var angular = window.angular;
 
-var unitedStatesApp = angular.module('UnitedStatesApp', ['ngRoute', 'ngCookies']); //angular construct
+var unitedStatesApp = angular.module('UnitedStatesApp', ['ngRoute', 'ngCookies', 'base64']); //angular construct
 require('./states/states')(unitedStatesApp);
 require('./services/services')(unitedStatesApp);
 require('./states/controllers/states_controller')(unitedStatesApp);
 require('./directives/directives')(unitedStatesApp);
 require('./filters/filters')(unitedStatesApp);
+
+require('./states/states')(unitedStatesApp);
+require('./auth/auth')(unitedStatesApp);
 
 unitedStatesApp.config(['$routeProvider', function($route) {
   $route

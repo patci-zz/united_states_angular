@@ -21,13 +21,18 @@
   },
   "homepage": "https://github.com/patci/united_states_angular#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
+    "eat": "^0.1.1",
     "express": "^4.13.3",
     "mongoose": "^4.2.5"
   },
   "devDependencies": {
     "angular": "^1.4.8",
+    "angular-base64": "^2.0.5",
+    "angular-cookies": "^1.4.8",
     "angular-mocks": "^1.4.8",
+    "angular-route": "^1.4.8",
     "chai": "^3.4.1",
     "chai-http": "^1.0.0",
     "gulp": "^3.9.0",

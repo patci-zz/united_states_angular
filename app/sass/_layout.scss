@@ -1,15 +1,26 @@
+//Colors!
+
+$blue:     #44f;
+$red:      #900;
+
+// Fonts!
+
+$header-font-family: "Verdana";
+$li-font-family: "Helvetica";
+
+
 .link {
   padding-right: .5em;
   padding-bottom: .5em;
 }
 
 form {
-  color: #44f;
+  color: $blue;
 }
 
 
 li {
-  color: #900;
+  color: $red;
 }
 
 .states {

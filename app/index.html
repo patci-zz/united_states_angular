@@ -7,29 +7,21 @@
     <link rel="stylesheet" href="styles.min.css">
   </head>
   <body data-ng-app='UnitedStatesApp'>  <!--this is a directive pre-fixed with 'data' telling everything contained within the body is angular-->
+
+  <div data-ng-controller="AuthController" data-ng-init="getUser()">
+    <a data-ng-if="currentUser" href data-mg-click="logOut()">Log Out of {{username}}</a>
+    <main data-ng-view></main>
+  </div>
+
     <h1>A United States Angular App</h1>
-    <main data-ng-controller='StatesController' data-ng-init="getAll()">
-      <ul id="errorslist">
-      <li data-ng-repeat="error in errors" data-ng-cloak>{{error}}</li>
-    </ul>
-
-    <form ng-cloak name="newStateForm" data-ng-submit="create(newState)">
-      <h2>Add a State:</h2>
-
-      <label for="newStateName">State:</label>
-      <input type="text" id="newStateName" required data-ng-model="newState.name" placeholder="Washington">
-
-      <label for="newFavoriteCity">Favorite City:</label>
-      <input type="text" id="newFavoriteCity" required data-ng-model="newState.city" placeholder="Seattle">
-
-      <button type="submit" data-ng-disabled="newStateForm.$invalid">Submit New State</button>
-    </form>
 
     <ul data-ng-cloak id='statelist'>
         <h3 data-ng-if="states.length>0">States</h3>
 
-        <li class="states" data-ng-mouseOver="toggleCity(state)" data-ng-repeat="state in states">
+        <li class="states"
+          data-ng-repeat="state in states">
           <strong ng-cloak>{{state.name}}</strong>
+          <div data-state-directive data-state="state"></div>
 
           <p ng-cloak data-ng-if="state.revealCity">{{state.city}}</p>
 
@@ -45,16 +37,7 @@
           <button type="submit">Save Changes</button>
           <button data-ng-click="cancel(state)">Cancel</button>
         </form>
-          <table>
-            <tr>
-              <td class="link"><a href="" data-ng-if="!state.editing" data-ng-click="edit(state)">edit</a></td>
 
-              <td class="link"><a href="" data-ng-if="!state.editing" data-ng-click="remove(state)">delete</a></td>
-            </tr><br>
-          </table>
-        </li>
-      </ul>
-    </main>
     <script src='bundle.js'></script>
   </body>
 </html>

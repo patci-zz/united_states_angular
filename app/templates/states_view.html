@@ -1,0 +1,35 @@
+<section data-ng-controller="StatesController" data-ng-init="getAll();">
+
+  <ul id="errorslist">
+    <li data-ng-repeat="error in errors" data-ng-cloak>{{error}}</li>
+  </ul>
+
+  <div data-state-form-directive
+    data-button-text="Create New State"
+    data-form-name="newStateForm"
+    data-heading-text="Create A New State"
+    data-state="newState"
+    data-save="create(state)">
+  </div>
+
+  <div data-list-directive data-title="states">
+      <li data-ng-repeat="state in states">
+        <div data-state-directive data-state="state"></div>
+        <div data-state-form-directive
+          data-ng-if"state.editing"
+          data-button-text="Save State!"
+          data-form-name="edit{{state._id}}"
+          data-state="state"
+          data-heading-text="Editing {{state.name}}"
+          data-save="update(state)">
+          <button data-ng-click="state.editing=false">Cancel></button>
+        </div>
+
+        <table>
+          <tr>
+            <td class="link"><a href="" data-ng-if="!state.editing" data-ng-click="edit(state)">edit</a></td>
+
+            <td class="link"><a href="" data-ng-if="!state.editing" data-ng-click="remove(state)">delete</a></td>
+          </tr><br>
+        </table>
+</section>

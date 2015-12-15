@@ -1,0 +1,14 @@
+<div>
+<form ng-cloak name="{{formName}}" data-ng-submit="save({state: state})">
+      <h2>{{headingText}}</h2>
+
+      <label for="stateName">State:</label>
+      <input type="text" id="stateName" required data-ng-model="state.name" placeholder="Ex: Washington">
+
+      <label for="favoriteCity">Favorite City:</label>
+      <input type="text" id="favoriteCity" required data-ng-model="state.city" placeholder="Ex: Seattle">
+
+      <button type="submit">{{buttonText}}</button>
+      <ng-transclude></ng-transclude>
+    </form>
+</div>

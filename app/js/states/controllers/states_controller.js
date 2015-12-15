@@ -1,10 +1,14 @@
+var angular = window.angular;
 module.exports = exports = function(app) {
-  app.controller('StatesController', ['$scope', '$http', 'cfResource', function($scope, $http, cfResource) {
+  app.controller('StatesController', ['$scope', '$http', '$location', 'cfResource', function($scope, $http, $location, cfResource) {
     $scope.states = []; // Will be bound to the array, will not look elsewhere
     $scope.errors = [];
-    //$scope.inputDefaults = {name: 'State', city: 'City'};
     $scope.newState = {}; //angular.copy($scope.inputDefaults);
+    $scope.messageOne = "hello from inside the controller";
     var statesResource = cfResource('states');
+
+    if (!$scope.token)
+      $location.path('/signup');
 
     $scope.getAll = function() {
       statesResource.getAll(function(err, data) {

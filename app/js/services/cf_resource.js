@@ -26,13 +26,13 @@ module.exports = exports = function(app) {
             .then(handleSuccess(callback), handleFail(callback));
         };
 
-        resource.update = function() {
+        /* resource.update = function() {
 
         };
 
         resource.remove = function() {
 
-        };
+        }; */
         return resource;
     };
   }]);
